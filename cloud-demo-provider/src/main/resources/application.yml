@@ -1,0 +1,46 @@
+
+server:
+  port: 8078
+
+eurekaServer:
+  host: localhost
+  port: 8761
+  user: root
+  password: root
+
+eureka:
+  client:
+    #将此项目注册到Eureka服务
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host}:${eurekaServer.port}/eureka
+
+
+
+
+# thymeleaf
+spring:
+   application:
+       name: provider-demo
+   thymeleaf:
+       prefix:
+          classpath: /templates/
+       check-template-location: true
+       suffix: .html
+       encoding: UTF-8
+       servlet:
+          content-type: text/html
+       mode: HTML5
+       cache: false
+   datasource:
+      url: jdbc:mysql://localhost:3306/db?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+
+## Mybatis 配置
+# 配置为 com.pa.shop.entity 指向实体类包路径。
+mybatis:
+   typeAliasesPackage: cn.org.zhixiang.domain
+# 配置为 classpath 路径下 mapper 包下，* 代表会扫描所有 xml 文件。
+   mapperLocations: classpath\:mapper/*.xml

@@ -1,0 +1,13 @@
+server:
+  port: 8999
+#配置服务实例名称,这里使用"discovery.serviceId",不能使用"discovery.service-id"
+spring:
+  cloud:
+    config:
+      discovery:
+        serviceId: config-server
+      label: master
+      profile: prod
+      uri: http://localhost:8888/
+  application:
+    name: lisiService
